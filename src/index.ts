@@ -355,6 +355,7 @@ export class AtomicCalendarRevive extends LitElement {
 				const isEventNext = !!(
 					di == 0 &&
 					event.startDateTime.isAfter(dayjs()) &&
+					event.startDateTime.isBefore(dayjs().add(1, 'day')) &&
 					(i == 0 || !arr[i - 1].startDateTime.isAfter(dayjs()))
 				);
 				//show line before next event
@@ -441,7 +442,7 @@ export class AtomicCalendarRevive extends LitElement {
 								${eventDate}
 							</div>`
 						: html``;
-				return html`<div class="single-event-container ${compactMode} ${dayWrap} ${hideDate}" style="${lastEventStyle}">
+				return html`<div class="single-event-container ${event.originName} ${compactMode} ${dayWrap} ${hideDate}" style="${lastEventStyle}">
 					${eventLeft}
 					<div class="event-right" style="${finishedEventsStyle}">
 						${currentEventLine}
